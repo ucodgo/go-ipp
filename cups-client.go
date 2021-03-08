@@ -2,6 +2,7 @@ package ipp
 
 import (
 	"bytes"
+	"errors"
 	"strings"
 )
 
@@ -319,4 +320,22 @@ func (c *CUPSClient) PrintTestPage(printer string) (int, error) {
 	}, printer, map[string]interface{}{
 		AttributeJobName: "Test Page",
 	})
+}
+
+//GetDefault returns the id of the default Printer or an error if one occurred
+func (c *CUPSClient) GetDefault() (string, error) {
+	r := NewRequest(OperationCupsGetDefault, 1)
+
+	r.OperationAttributes["requested-attributes"] = []string{"printer-name"}
+
+	resp, err := c.SendRequest(c.adapter.GetHttpUri("", nil), r, nil)
+	if err != nil {
+		return "", err
+	}
+
+	if len(resp.PrinterAttributes) != 1 {
+		return "", errors.New("Server did not return a default printer")
+	}
+
+	return (resp.PrinterAttributes[0]["printer-name"][0].Value).(string), nil
 }
