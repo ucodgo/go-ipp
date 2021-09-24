@@ -308,6 +308,7 @@ const (
 	AttributeLastDocument           = "last-document"
 	AttributeMyJobs                 = "my-jobs"
 	AttributePPDName                = "ppd-name"
+	AttributePPDMakeAndModel        = "ppd-make-and-model"
 	AttributePrinterIsShared        = "printer-is-shared"
 	AttributePrinterURI             = "printer-uri"
 	AttributePurgeJobs              = "purge-jobs"
@@ -344,20 +345,21 @@ const (
 	AttributePrinterState           = "printer-state"
 	AttributeMemberNames            = "member-names"
 	AttributePrinterType            = "printer-type"
-	AttributePrinterMarkAndModel    = "printer-make-and-model"
+	AttributePrinterMakeAndModel    = "printer-make-and-model"
 	AttributePrinterStateMessage    = "printer-state-message"
 	AttributePrinterUriSupported    = "printer-uri-supported"
 	AttributeJobMediaProgress       = "job-media-progress"
 	AttributeJobKilobyteOctets      = "job-k-octets"
 	AttributeNumberOfDocuments      = "number-of-documents"
 	AttributeJobOriginatingUserName = "job-originating-user-name"
+	AttributeOutputOrder            = "outputorder"
 )
 
 // Default attributes
 var (
 	DefaultClassAttributes   = []string{AttributePrinterName, AttributeMemberNames}
 	DefaultPrinterAttributes = []string{AttributePrinterName, AttributePrinterType, AttributePrinterLocation, AttributePrinterInfo,
-		AttributePrinterMarkAndModel, AttributePrinterState, AttributePrinterStateMessage, AttributePrinterStateReasons,
+		AttributePrinterMakeAndModel, AttributePrinterState, AttributePrinterStateMessage, AttributePrinterStateReasons,
 		AttributePrinterUriSupported, AttributeDeviceURI, AttributePrinterIsShared}
 	DefaultJobAttributes = []string{AttributeJobID, AttributeJobName, AttributePrinterURI, AttributeJobState, AttributeJobStateReason,
 		AttributeJobHoldUntil, AttributeJobMediaProgress, AttributeJobKilobyteOctets, AttributeNumberOfDocuments, AttributeCopies,
@@ -393,12 +395,14 @@ var (
 		AttributeNumberUp:               TagInteger,
 		AttributeOrientationRequested:   TagEnum,
 		AttributePPDName:                TagName,
+		AttributePPDMakeAndModel:        TagText,
 		AttributeNumberOfDocuments:      TagInteger,
 		AttributePrintQuality:           TagEnum,
 		AttributePrinterErrorPolicy:     TagName,
 		AttributePrinterInfo:            TagText,
 		AttributePrinterIsAcceptingJobs: TagBoolean,
 		AttributePrinterIsShared:        TagBoolean,
+		AttributePrinterName:            TagName,
 		AttributePrinterLocation:        TagText,
 		AttributePrinterResolution:      TagResolution,
 		AttributePrinterState:           TagEnum,
@@ -411,5 +415,6 @@ var (
 		AttributeFirstJobID:             TagInteger,
 		AttributeStatusMessage:          TagText,
 		AttributeLimit:                  TagInteger,
+		AttributeOutputOrder:            TagName,
 	}
 )
